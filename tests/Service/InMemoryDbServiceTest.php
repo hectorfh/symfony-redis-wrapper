@@ -4,7 +4,7 @@ namespace AppBundle\Tests\Service;
 
 use AppBundle\Entity\ModuleLog;
 use AppBundle\Entity\Types\PlatformId;
-use AppBundle\Handler\IplatformsCustomLogHandler;
+use AppBundle\Handler\CustomLogHandler;
 use AppBundle\Filter\PlatformFilter;
 use AppBundle\Service\InMemoryDbService;
 use AppBundle\Service\PlatformConfigService;

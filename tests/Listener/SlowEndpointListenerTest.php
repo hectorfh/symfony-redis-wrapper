@@ -48,7 +48,7 @@ class SlowEndpointListenerTest extends AppBaseTest
             return 'POST';
         };
         $request->getUri = function() {
-            return 'https://ipartners.iplatforms.com.au/endpoint1';
+            return 'https://subdom.hectorfh.github.io/endpoint1';
         };
         $request->getContent = function() {
             return '{ "attr" : "value" }';
@@ -71,7 +71,7 @@ class SlowEndpointListenerTest extends AppBaseTest
         $this->slowEndpointListener->onKernelResponse($event);
 
         $this->assertRegExp(
-            '/Slow endpoint, time: .*, uri: POST https:\/\/ipartners.iplatforms.com.au\/endpoint1, body: { "attr" : "value" }/',
+            '/Slow endpoint, time: .*, uri: POST https:\/\/subdom.hectorfh.github.io\/endpoint1, body: { "attr" : "value" }/',
             $errorMsg);
     }
 

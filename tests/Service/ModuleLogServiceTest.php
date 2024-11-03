@@ -5,7 +5,7 @@ namespace AppBundle\Tests\Service;
 use AppBundle\Entity\IdentifiedLogError;
 use AppBundle\Entity\ModuleLog;
 use AppBundle\Entity\Types\PlatformId;
-use AppBundle\Handler\IplatformsCustomLogHandler;
+use AppBundle\Handler\CustomLogHandler;
 use AppBundle\Filter\PlatformFilter;
 use AppBundle\Service\ModuleLogService;
 use AppBundle\Service\PlatformConfigService;
@@ -25,9 +25,9 @@ class ModuleLogServiceTest extends AppBaseTest
 {
 
     /**
-     * @var IplatformsCustomLogHandler
+     * @var CustomLogHandler
      */
-    private $iplatformsCustomLogHandler;
+    private $customLogHandler;
 
     /**
      * @var ModuleLogService
@@ -69,8 +69,8 @@ class ModuleLogServiceTest extends AppBaseTest
         $platformName = $this->createdKernel->getContainer()->getParameter('platform_name');
         $this->setPlatformConfigInRequestStack($platformId, $platformName);
 
-        $this->iplatformsCustomLogHandler =
-                $this->createdKernel->getContainer()->get(IplatformsCustomLogHandler::SERVICE_NAME);
+        $this->customLogHandler =
+                $this->createdKernel->getContainer()->get(CustomLogHandler::SERVICE_NAME);
 
         $this->moduleLogService =
                 $this->createdKernel->getContainer()->get(ModuleLogService::SERVICE_NAME);
@@ -111,8 +111,8 @@ class ModuleLogServiceTest extends AppBaseTest
             ->getQuery()
             ->execute();
 
-        $this->iplatformsCustomLogHandler->write($this->record1);
-        $this->iplatformsCustomLogHandler->write($this->record2);
+        $this->customLogHandler->write($this->record1);
+        $this->customLogHandler->write($this->record2);
         $this->moduleLogService->pullErrors();
 
         /** @var ModuleLog[] $moduleLog */
@@ -127,7 +127,7 @@ class ModuleLogServiceTest extends AppBaseTest
         $moduleLog = $moduleLogs[0];
 
         $this->assertEquals($this->record1['message'], $moduleLog->getMessage());
-        $this->assertEquals(PlatformId::IPARTNERS, $moduleLog->getPlatformId());
+        $this->assertEquals(PlatformId::TITO, $moduleLog->getPlatformId());
 
     }
 
@@ -145,8 +145,8 @@ class ModuleLogServiceTest extends AppBaseTest
             ->getQuery()
             ->execute();
 
-        $this->iplatformsCustomLogHandler->write($this->record1);
-        $this->iplatformsCustomLogHandler->write($this->record2);
+        $this->customLogHandler->write($this->record1);
+        $this->customLogHandler->write($this->record2);
 
         $sendMessageOfLogErrorCalled = false;
         $this->slackService->sendMessageOfLogError = function() use (&$sendMessageOfLogErrorCalled) {
@@ -171,7 +171,7 @@ class ModuleLogServiceTest extends AppBaseTest
             ->getQuery()
             ->execute();
 
-        $this->iplatformsCustomLogHandler->write($this->record1);
+        $this->customLogHandler->write($this->record1);
 
         $this->slackService->sendMessageOfLogError = function() use (&$sendMessageOfLogErrorCalled) {
             throw new \Exception("Just another exception.");
@@ -201,7 +201,7 @@ class ModuleLogServiceTest extends AppBaseTest
                 'message'       => 'error message ' . time(),
                 'datetime'      => new \DateTime('@'.strtotime('-6 days'))];
 
-        $this->iplatformsCustomLogHandler->write($record);
+        $this->customLogHandler->write($record);
         $this->moduleLogService->pullErrors();
 
         $record = [
@@ -210,7 +210,7 @@ class ModuleLogServiceTest extends AppBaseTest
                 'message'       => 'error message ' . (time() + 1),
                 'datetime'      => new \DateTime('@'.strtotime('-4 days'))];
 
-        $this->iplatformsCustomLogHandler->write($record);
+        $this->customLogHandler->write($record);
         $this->moduleLogService->pullErrors();
 
         $this->moduleLogService->purgeLog();
@@ -253,7 +253,7 @@ class ModuleLogServiceTest extends AppBaseTest
                 'message'       => 'error message 1',
                 'datetime'      => new \DateTime()
         ];
-        $this->iplatformsCustomLogHandler->write($record);
+        $this->customLogHandler->write($record);
 
         $record = [
                 'level'         => Logger::ERROR,
@@ -261,7 +261,7 @@ class ModuleLogServiceTest extends AppBaseTest
                 'message'       => 'error message 2',
                 'datetime'      => new \DateTime()
         ];
-        $this->iplatformsCustomLogHandler->write($record);
+        $this->customLogHandler->write($record);
 
         $sendMessageOfLogErrorCount = 0;
         $this->slackService->sendMessageOfLogError = function() use (&$sendMessageOfLogErrorCount) {

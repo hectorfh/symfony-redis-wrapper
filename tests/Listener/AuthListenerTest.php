@@ -75,7 +75,7 @@ class AuthListenerTest  extends AppBaseTest
         /** @var User $user */
         $user = $this->userService->getUserById(10000);
 
-        $this->addRoleToUser($user->getId(), "ROLE_ADMIN", "ipartners");
+        $this->addRoleToUser($user->getId(), "ROLE_ADMIN", "subdom");
 
         $client = static::createClient();
 
@@ -130,7 +130,7 @@ class AuthListenerTest  extends AppBaseTest
             [],
             [
                 'CONTENT_TYPE'         => 'application/json',
-                'HTTP_x-platform-name' => 'ipartners',
+                'HTTP_x-platform-name' => 'subdom',
                 'HTTP_Authorization'   => 'Bearer ' . $jwt
             ]
         );

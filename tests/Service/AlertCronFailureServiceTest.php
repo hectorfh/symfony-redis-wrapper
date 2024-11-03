@@ -22,9 +22,9 @@ class AlertCronFailureServiceTest extends AppBaseTest
 {
 
     /**
-     * @var IplatformsCustomLogHandler
+     * @var CustomLogHandler
      */
-    private $iplatformsCustomLogHandler;
+    private $customLogHandler;
 
     /**
      * @var ModuleLogService
@@ -78,7 +78,7 @@ class AlertCronFailureServiceTest extends AppBaseTest
         $this->entityManager->persist($ts);
 
         $ts = new TaskSemaphore();
-        $ts->setName('update-investor-insight-email-ipartners');
+        $ts->setName('update-investor-insight-email-subdom');
         $startDate = new \DateTime();
         $startDate->add(\DateInterval::createFromDateString('-61 minute'));
         $ts->setStartDate($startDate);
@@ -88,7 +88,7 @@ class AlertCronFailureServiceTest extends AppBaseTest
         $alertCronFailureService = $this->createdKernel->getContainer()->get(AlertCronFailureService::SERVICE_NAME);
         $alertCronFailureService->alertFailures();
 
-        $expected = '/^{"text":"Failed tasks:\\\ntest .*\\\nupdate-investor-insight-email-ipartners .*\\\n","type":"mrkdwn"}$/';
+        $expected = '/^{"text":"Failed tasks:\\\ntest .*\\\nupdate-investor-insight-email-subdom .*\\\n","type":"mrkdwn"}$/';
         $this->assertEquals(1, preg_match($expected, $msg));
 
     }
