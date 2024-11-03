@@ -1,14 +1,14 @@
 <?php
 
 
-namespace IpartnersBundle\Tests\Service;
+namespace AppBundle\Tests\Service;
 
 
-use IpartnersBundle\Service\FrontAuthService;
-use IpartnersBundle\Tests\IpartnersBaseTest;
-use IpartnersBundle\Tests\MockObj;
+use AppBundle\Service\FrontAuthService;
+use AppBundle\Tests\AppBaseTest;
+use AppBundle\Tests\MockObj;
 
-class FrontAuthServiceTest extends IpartnersBaseTest
+class FrontAuthServiceTest extends AppBaseTest
 {
     /** @var FrontAuthService */
     private $target;

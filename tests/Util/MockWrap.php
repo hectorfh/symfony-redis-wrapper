@@ -1,7 +1,7 @@
 <?php
 
 
-namespace IpartnersBundle\Tests\Util;
+namespace AppBundle\Tests\Util;
 
 
 class MockWrap

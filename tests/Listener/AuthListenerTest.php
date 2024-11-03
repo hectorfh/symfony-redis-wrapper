@@ -1,21 +1,21 @@
 <?php
 
-namespace IpartnersBundle\Tests\Controller;
+namespace AppBundle\Tests\Controller;
 
-use IpartnersBundle\Tests\IpartnersBaseTest;
-use IpartnersBundle\Entity\PlatformUserRole;
-use IpartnersBundle\Service\UserService;
-use IpartnersBundle\Service\PlatformService;
-use IpartnersBundle\Service\UserRoleService;
-use IpartnersBundle\Service\JwtApiService;
-use IpartnersBundle\Entity\AuditInfo;
-use IpartnersBundle\Filter\PlatformFilter;
-use IpartnersBundle\Dto\UserJWT_RequestDto;
+use AppBundle\Tests\AppBaseTest;
+use AppBundle\Entity\PlatformUserRole;
+use AppBundle\Service\UserService;
+use AppBundle\Service\PlatformService;
+use AppBundle\Service\UserRoleService;
+use AppBundle\Service\JwtApiService;
+use AppBundle\Entity\AuditInfo;
+use AppBundle\Filter\PlatformFilter;
+use AppBundle\Dto\UserJWT_RequestDto;
 use JMS\Serializer\SerializationContext;
 use JMS\Serializer\SerializerBuilder;
 
 
-class AuthListenerTest  extends IpartnersBaseTest
+class AuthListenerTest  extends AppBaseTest
 {
 
     /**
@@ -150,13 +150,13 @@ class AuthListenerTest  extends IpartnersBaseTest
         $platform = $this->platformService->findByName($platformName);
 
         /** @var Role $role */
-        $role = $this->entityManager->getRepository('IpartnersBundle:Role')->findOneByRole($roleName);
+        $role = $this->entityManager->getRepository('AppBundle:Role')->findOneByRole($roleName);
 
         /** @var User $user */
         $user = $this->userService->findById($userId);
 
         /** @var PlatformUserRole $platformUserRole */
-        $platformUserRole = $this->entityManager->getRepository('IpartnersBundle:PlatformUserRole')
+        $platformUserRole = $this->entityManager->getRepository('AppBundle:PlatformUserRole')
             ->findOneBy(["platform" => $platform, "role" => $role, "user" => $user]);
 
         if ($platformUserRole) {

@@ -1,33 +1,33 @@
 <?php
 
 
-namespace IpartnersBundle\Tests\Service;
+namespace AppBundle\Tests\Service;
 
 
-use IpartnersBundle\Constant\AdvisorType;
-use IpartnersBundle\Constant\InvestmentEntityFatcaCrsInformationStatus;
-use IpartnersBundle\Constant\SemaphoreLight;
-use IpartnersBundle\Dto\AdvisorClientDto;
-use IpartnersBundle\Dto\AdvisorClientLightDto;
-use IpartnersBundle\Dto\AdvisorDto;
-use IpartnersBundle\Entity\AdvisorPlatform;
-use IpartnersBundle\Entity\InvestmentEntity;
-use IpartnersBundle\Entity\InvestmentEntityFatcaCrsInformation;
-use IpartnersBundle\Entity\InvestmentEntityIndividual;
-use IpartnersBundle\Entity\InvestmentEntityPlatform;
-use IpartnersBundle\Entity\InvestmentEntitySmsf;
-use IpartnersBundle\Entity\Investor;
-use IpartnersBundle\Entity\InvestorPlatformAdvisor;
-use IpartnersBundle\Entity\Types\AcStatus;
-use IpartnersBundle\Entity\Types\InvestmentEntityStatus;
-use IpartnersBundle\Entity\Types\InvestorType;
-use IpartnersBundle\Entity\WholesaleData;
-use IpartnersBundle\Service\AdvisorClientDtoFactory;
-use IpartnersBundle\Tests\IpartnersBaseTest;
-use IpartnersBundle\Tests\TestDatasetUtil;
-use IpartnersBundle\Tests\TestUtil;
+use AppBundle\Constant\AdvisorType;
+use AppBundle\Constant\InvestmentEntityFatcaCrsInformationStatus;
+use AppBundle\Constant\SemaphoreLight;
+use AppBundle\Dto\AdvisorClientDto;
+use AppBundle\Dto\AdvisorClientLightDto;
+use AppBundle\Dto\AdvisorDto;
+use AppBundle\Entity\AdvisorPlatform;
+use AppBundle\Entity\InvestmentEntity;
+use AppBundle\Entity\InvestmentEntityFatcaCrsInformation;
+use AppBundle\Entity\InvestmentEntityIndividual;
+use AppBundle\Entity\InvestmentEntityPlatform;
+use AppBundle\Entity\InvestmentEntitySmsf;
+use AppBundle\Entity\Investor;
+use AppBundle\Entity\InvestorPlatformAdvisor;
+use AppBundle\Entity\Types\AcStatus;
+use AppBundle\Entity\Types\InvestmentEntityStatus;
+use AppBundle\Entity\Types\InvestorType;
+use AppBundle\Entity\WholesaleData;
+use AppBundle\Service\AdvisorClientDtoFactory;
+use AppBundle\Tests\AppBaseTest;
+use AppBundle\Tests\TestDatasetUtil;
+use AppBundle\Tests\TestUtil;
 
-class AdvisorClientDtoFactoryTest extends IpartnersBaseTest {
+class AdvisorClientDtoFactoryTest extends AppBaseTest {
 
     /**
      * @var AdvisorClientDtoFactory
@@ -49,7 +49,7 @@ class AdvisorClientDtoFactoryTest extends IpartnersBaseTest {
         // Mock & Stubs ----------------------------------------------------------------------------------------------------
         TestDatasetUtil::createPersistentAdvisorClientDtoFactoryAllGreen($this->entityManager, $this->persistentEntities);
 
-        $portfolioServiceStub = $this->getMockBuilder('IpartnersBundle\Service\PortfolioService')
+        $portfolioServiceStub = $this->getMockBuilder('AppBundle\Service\PortfolioService')
             ->disableOriginalConstructor()->getMock();
         $portfolioServiceStub->method('getPortfolioSnapshot')
             ->willReturn(array(
@@ -251,7 +251,7 @@ class AdvisorClientDtoFactoryTest extends IpartnersBaseTest {
      */
     public function resolveEntitiesLabel_ok() {
 
-        $investmentEntityPlatformServiceStub = $this->getMockBuilder('IpartnersBundle\Service\InvestmentEntityPlatformService')
+        $investmentEntityPlatformServiceStub = $this->getMockBuilder('AppBundle\Service\InvestmentEntityPlatformService')
             ->disableOriginalConstructor()->getMock();
 
         $investmentEntityPlatformServiceStub
@@ -279,7 +279,7 @@ class AdvisorClientDtoFactoryTest extends IpartnersBaseTest {
      */
     public function resolveEntitiesTooltip_ok() {
 
-        $investmentEntityPlatformServiceStub = $this->getMockBuilder('IpartnersBundle\Service\InvestmentEntityPlatformService')
+        $investmentEntityPlatformServiceStub = $this->getMockBuilder('AppBundle\Service\InvestmentEntityPlatformService')
             ->disableOriginalConstructor()->getMock();
 
         $investmentEntityPlatformServiceStub

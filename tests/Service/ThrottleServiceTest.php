@@ -1,16 +1,16 @@
 <?php
 
-namespace IpartnersBundle\Tests\Service;
+namespace AppBundle\Tests\Service;
 
-use IpartnersBundle\Service\ThrottleService;
-use IpartnersBundle\Tests\IpartnersBaseTest;
+use AppBundle\Service\ThrottleService;
+use AppBundle\Tests\AppBaseTest;
 
 
 /**
  * Class ThrottleServiceTest
- * @package IpartnersBundle\Tests\Service
+ * @package AppBundle\Tests\Service
  */
-class ThrottleServiceTest extends IpartnersBaseTest
+class ThrottleServiceTest extends AppBaseTest
 {
 
     /**

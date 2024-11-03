@@ -1,21 +1,21 @@
 <?php
 
-namespace IpartnersBundle\Tests\Service;
+namespace AppBundle\Tests\Service;
 
-use IpartnersBundle\Entity\Types\PlatformId;
-use IpartnersBundle\Filter\PlatformFilter;
-use IpartnersBundle\Service\QueueService;
-use IpartnersBundle\Service\PlatformConfigService;
-use IpartnersBundle\Tests\IpartnersBaseTest;
-use IpartnersBundle\Tests\TestUtil;
+use AppBundle\Entity\Types\PlatformId;
+use AppBundle\Filter\PlatformFilter;
+use AppBundle\Service\QueueService;
+use AppBundle\Service\PlatformConfigService;
+use AppBundle\Tests\AppBaseTest;
+use AppBundle\Tests\TestUtil;
 use Monolog\Logger;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Class QueueServiceTest
- * @package IpartnersBundle\Tests\Service
+ * @package AppBundle\Tests\Service
  */
-class QueueServiceTest extends IpartnersBaseTest
+class QueueServiceTest extends AppBaseTest
 {
 
     /**

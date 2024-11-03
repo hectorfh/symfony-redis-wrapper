@@ -1,9 +1,9 @@
 <?php
 
 
-namespace IpartnersBundle\Tests\Util;
+namespace AppBundle\Tests\Util;
 
-use IpartnersBundle\Service\InMemoryDbService;
+use AppBundle\Service\InMemoryDbService;
 
 
 class TestsTimer

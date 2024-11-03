@@ -1,21 +1,21 @@
 <?php
 
-namespace IpartnersBundle\Tests\Service;
+namespace AppBundle\Tests\Service;
 
-use IpartnersBundle\Service\HyperinflatorService;
-use IpartnersBundle\Service\InvestService;
-use IpartnersBundle\Entity\Types\Visibility;
-use IpartnersBundle\Tests\IpartnersBaseTest;
-use IpartnersBundle\Tests\TestDatasetUtil;
-use IpartnersBundle\Tests\TestUtil;
-use IpartnersBundle\Entity\Types\DealCurrentState;
+use AppBundle\Service\HyperinflatorService;
+use AppBundle\Service\InvestService;
+use AppBundle\Entity\Types\Visibility;
+use AppBundle\Tests\AppBaseTest;
+use AppBundle\Tests\TestDatasetUtil;
+use AppBundle\Tests\TestUtil;
+use AppBundle\Entity\Types\DealCurrentState;
 
 
 /**
  * Class HyperinflatorServiceTest
- * @package IpartnersBundle\Tests\Service
+ * @package AppBundle\Tests\Service
  */
-class HyperinflatorServiceTest extends IpartnersBaseTest
+class HyperinflatorServiceTest extends AppBaseTest
 {
 
     /**
@@ -60,23 +60,23 @@ class HyperinflatorServiceTest extends IpartnersBaseTest
         $this->entityManager->persist($trustRegister);
         $this->entityManager->flush();
 
-        $ies = $this->entityManager->getRepository('IpartnersBundle:InvestmentEntity')->findAll();
+        $ies = $this->entityManager->getRepository('AppBundle:InvestmentEntity')->findAll();
         foreach ($ies as $ie) {
             $ie->setTfn('112243254');
         }
         $this->entityManager->flush();
 
-        $formerCountInvestments = $this->entityManager->getRepository('IpartnersBundle:Investment')->createQueryBuilder('i')->select('COUNT(i.id)')->getQuery()->getSingleScalarResult();
-        $formerCountPayments = $this->entityManager->getRepository('IpartnersBundle:Payment')->createQueryBuilder('p')->select('COUNT(p.id)')->getQuery()->getSingleScalarResult();
-        $formerCountTrhs = $this->entityManager->getRepository('IpartnersBundle:TrustRegisterHolder')->createQueryBuilder('trh')->select('COUNT(trh.id)')->getQuery()->getSingleScalarResult();
-        $formerCountCoupons = $this->entityManager->getRepository('IpartnersBundle:CouponOption')->createQueryBuilder('co')->select('COUNT(co.id)')->getQuery()->getSingleScalarResult();
+        $formerCountInvestments = $this->entityManager->getRepository('AppBundle:Investment')->createQueryBuilder('i')->select('COUNT(i.id)')->getQuery()->getSingleScalarResult();
+        $formerCountPayments = $this->entityManager->getRepository('AppBundle:Payment')->createQueryBuilder('p')->select('COUNT(p.id)')->getQuery()->getSingleScalarResult();
+        $formerCountTrhs = $this->entityManager->getRepository('AppBundle:TrustRegisterHolder')->createQueryBuilder('trh')->select('COUNT(trh.id)')->getQuery()->getSingleScalarResult();
+        $formerCountCoupons = $this->entityManager->getRepository('AppBundle:CouponOption')->createQueryBuilder('co')->select('COUNT(co.id)')->getQuery()->getSingleScalarResult();
 
         $this->hyperinflatorService->hyperinflateTrustRegister($trustRegister->getId(), 10);
 
-        $countInvestments = $this->entityManager->getRepository('IpartnersBundle:Investment')->createQueryBuilder('i')->select('COUNT(i.id)')->getQuery()->getSingleScalarResult();
-        $countPayments = $this->entityManager->getRepository('IpartnersBundle:Payment')->createQueryBuilder('p')->select('COUNT(p.id)')->getQuery()->getSingleScalarResult();
-        $countTrhs = $this->entityManager->getRepository('IpartnersBundle:TrustRegisterHolder')->createQueryBuilder('trh')->select('COUNT(trh.id)')->getQuery()->getSingleScalarResult();
-        $countCoupons = $this->entityManager->getRepository('IpartnersBundle:CouponOption')->createQueryBuilder('co')->select('COUNT(co.id)')->getQuery()->getSingleScalarResult();
+        $countInvestments = $this->entityManager->getRepository('AppBundle:Investment')->createQueryBuilder('i')->select('COUNT(i.id)')->getQuery()->getSingleScalarResult();
+        $countPayments = $this->entityManager->getRepository('AppBundle:Payment')->createQueryBuilder('p')->select('COUNT(p.id)')->getQuery()->getSingleScalarResult();
+        $countTrhs = $this->entityManager->getRepository('AppBundle:TrustRegisterHolder')->createQueryBuilder('trh')->select('COUNT(trh.id)')->getQuery()->getSingleScalarResult();
+        $countCoupons = $this->entityManager->getRepository('AppBundle:CouponOption')->createQueryBuilder('co')->select('COUNT(co.id)')->getQuery()->getSingleScalarResult();
 
         $this->assertEquals(10, $countInvestments - $formerCountInvestments);
         $this->assertEquals(30, $countPayments - $formerCountPayments);

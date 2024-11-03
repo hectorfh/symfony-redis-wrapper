@@ -1,21 +1,21 @@
 <?php
 
-namespace IpartnersBundle\Tests\Handler;
+namespace AppBundle\Tests\Handler;
 
-use IpartnersBundle\Entity\Types\PlatformId;
-use IpartnersBundle\Filter\PlatformFilter;
-use IpartnersBundle\Handler\InMemoryDbSessionHandler;
-use IpartnersBundle\Service\PlatformConfigService;
-use IpartnersBundle\Tests\IpartnersBaseTest;
-use IpartnersBundle\Tests\TestUtil;
+use AppBundle\Entity\Types\PlatformId;
+use AppBundle\Filter\PlatformFilter;
+use AppBundle\Handler\InMemoryDbSessionHandler;
+use AppBundle\Service\PlatformConfigService;
+use AppBundle\Tests\AppBaseTest;
+use AppBundle\Tests\TestUtil;
 use Monolog\Logger;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Class InMemoryDbSessionHandlerTest
- * @package IpartnersBundle\Tests\Handler
+ * @package AppBundle\Tests\Handler
  */
-class InMemoryDbSessionHandlerTest extends IpartnersBaseTest
+class InMemoryDbSessionHandlerTest extends AppBaseTest
 {
 
     /**

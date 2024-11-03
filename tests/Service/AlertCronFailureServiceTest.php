@@ -1,24 +1,24 @@
 <?php
 
-namespace IpartnersBundle\Tests\Service;
+namespace AppBundle\Tests\Service;
 
-use IpartnersBundle\Entity\TaskSemaphore;
-use IpartnersBundle\Service\AlertCronFailureService;
-use IpartnersBundle\Service\CurlService;
-use IpartnersBundle\Service\InMemoryDbService;
-use IpartnersBundle\Service\SlackService;
-use IpartnersBundle\Tests\IpartnersBaseTest;
-use IpartnersBundle\Tests\Util\MockWrap;
-use IpartnersBundle\Tests\Util\TestsTimer;
-use IpartnersBundle\Tests\TestUtil;
+use AppBundle\Entity\TaskSemaphore;
+use AppBundle\Service\AlertCronFailureService;
+use AppBundle\Service\CurlService;
+use AppBundle\Service\InMemoryDbService;
+use AppBundle\Service\SlackService;
+use AppBundle\Tests\AppBaseTest;
+use AppBundle\Tests\Util\MockWrap;
+use AppBundle\Tests\Util\TestsTimer;
+use AppBundle\Tests\TestUtil;
 use Monolog\Logger;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Class AlertCronFailureServiceTest
- * @package IpartnersBundle\Tests\Service
+ * @package AppBundle\Tests\Service
  */
-class AlertCronFailureServiceTest extends IpartnersBaseTest
+class AlertCronFailureServiceTest extends AppBaseTest
 {
 
     /**
@@ -68,7 +68,7 @@ class AlertCronFailureServiceTest extends IpartnersBaseTest
             $msg = $msgEncoded;
         };
 
-        $this->entityManager->createQueryBuilder()->delete('IpartnersBundle:TaskSemaphore')->getQuery()->execute();
+        $this->entityManager->createQueryBuilder()->delete('AppBundle:TaskSemaphore')->getQuery()->execute();
 
         $ts = new TaskSemaphore();
         $ts->setName("test");

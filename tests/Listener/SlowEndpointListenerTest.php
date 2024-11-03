@@ -1,16 +1,16 @@
 <?php
 
-namespace IpartnersBundle\Tests\Listener;
+namespace AppBundle\Tests\Listener;
 
-use IpartnersBundle\Listener\SlowEndpointListener;
-use IpartnersBundle\Tests\IpartnersBaseTest;
-use IpartnersBundle\Tests\Util\MockWrap;
+use AppBundle\Listener\SlowEndpointListener;
+use AppBundle\Tests\AppBaseTest;
+use AppBundle\Tests\Util\MockWrap;
 
 /**
  * Class SlowEndpointListenerTest
- * @package IpartnersBundle\Tests\Listener
+ * @package AppBundle\Tests\Listener
  */
-class SlowEndpointListenerTest extends IpartnersBaseTest
+class SlowEndpointListenerTest extends AppBaseTest
 {
 
     /**

@@ -1,27 +1,27 @@
 <?php
 
-namespace IpartnersBundle\Tests\Service;
+namespace AppBundle\Tests\Service;
 
-use IpartnersBundle\Entity\IdentifiedLogError;
-use IpartnersBundle\Entity\ModuleLog;
-use IpartnersBundle\Entity\Types\PlatformId;
-use IpartnersBundle\Handler\IplatformsCustomLogHandler;
-use IpartnersBundle\Filter\PlatformFilter;
-use IpartnersBundle\Service\ModuleLogService;
-use IpartnersBundle\Service\PlatformConfigService;
-use IpartnersBundle\Service\QueueService;
-use IpartnersBundle\Service\SlackService;
-use IpartnersBundle\Tests\IpartnersBaseTest;
-use IpartnersBundle\Tests\Util\MockWrap;
-use IpartnersBundle\Tests\TestUtil;
+use AppBundle\Entity\IdentifiedLogError;
+use AppBundle\Entity\ModuleLog;
+use AppBundle\Entity\Types\PlatformId;
+use AppBundle\Handler\IplatformsCustomLogHandler;
+use AppBundle\Filter\PlatformFilter;
+use AppBundle\Service\ModuleLogService;
+use AppBundle\Service\PlatformConfigService;
+use AppBundle\Service\QueueService;
+use AppBundle\Service\SlackService;
+use AppBundle\Tests\AppBaseTest;
+use AppBundle\Tests\Util\MockWrap;
+use AppBundle\Tests\TestUtil;
 use Monolog\Logger;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Class ModuleLogServiceTest
- * @package IpartnersBundle\Tests\Service
+ * @package AppBundle\Tests\Service
  */
-class ModuleLogServiceTest extends IpartnersBaseTest
+class ModuleLogServiceTest extends AppBaseTest
 {
 
     /**
@@ -105,7 +105,7 @@ class ModuleLogServiceTest extends IpartnersBaseTest
     {
 
         $this->queueService->clear(QueueService::ERROR_QUEUE);
-        $this->entityManager->createQueryBuilder()->delete('IpartnersBundle:ModuleLog')->getQuery()->execute();
+        $this->entityManager->createQueryBuilder()->delete('AppBundle:ModuleLog')->getQuery()->execute();
         $this->entityManager->createQueryBuilder()
             ->delete(IdentifiedLogError::class, 'm')
             ->getQuery()
@@ -118,7 +118,7 @@ class ModuleLogServiceTest extends IpartnersBaseTest
         /** @var ModuleLog[] $moduleLog */
         $moduleLogs =
                 $this->entityManager
-                ->getRepository('IpartnersBundle:ModuleLog')
+                ->getRepository('AppBundle:ModuleLog')
                 ->findBy(['message' => $this->record1['message']]);
 
         $this->assertEquals(1, count($moduleLogs));
@@ -138,7 +138,7 @@ class ModuleLogServiceTest extends IpartnersBaseTest
     public function test_notifyErrors_ok()
     {
         $this->queueService->clear(QueueService::ERROR_QUEUE);
-        $this->entityManager->createQueryBuilder()->delete('IpartnersBundle:ModuleLog')->getQuery()->execute();
+        $this->entityManager->createQueryBuilder()->delete('AppBundle:ModuleLog')->getQuery()->execute();
 
         $this->entityManager->createQueryBuilder()
             ->delete(IdentifiedLogError::class, 'm')
@@ -164,7 +164,7 @@ class ModuleLogServiceTest extends IpartnersBaseTest
     public function test_notifyErrors_throwsException()
     {
         $this->queueService->clear(QueueService::ERROR_QUEUE);
-        $this->entityManager->createQueryBuilder()->delete('IpartnersBundle:ModuleLog')->getQuery()->execute();
+        $this->entityManager->createQueryBuilder()->delete('AppBundle:ModuleLog')->getQuery()->execute();
 
         $this->entityManager->createQueryBuilder()
             ->delete(IdentifiedLogError::class, 'm')
@@ -218,7 +218,7 @@ class ModuleLogServiceTest extends IpartnersBaseTest
         /** @var ModuleLog[] $moduleLog */
         $moduleLogs =
                 $this->entityManager
-                        ->getRepository('IpartnersBundle:ModuleLog')
+                        ->getRepository('AppBundle:ModuleLog')
                         ->findAll();
 
         $this->assertEquals(1, count($moduleLogs));
@@ -275,7 +275,7 @@ class ModuleLogServiceTest extends IpartnersBaseTest
         /** @var ModuleLog[] $moduleLog */
         $moduleLogs =
                 $this->entityManager
-                        ->getRepository('IpartnersBundle:ModuleLog')
+                        ->getRepository('AppBundle:ModuleLog')
                         ->findAll();
 
         $this->assertEquals(2, count($moduleLogs));
@@ -283,7 +283,7 @@ class ModuleLogServiceTest extends IpartnersBaseTest
         /** @var IdentifiedLogError[] $identifiedLogError */
         $identifiedLogErrors =
                 $this->entityManager
-                        ->getRepository('IpartnersBundle:IdentifiedLogError')
+                        ->getRepository('AppBundle:IdentifiedLogError')
                         ->findAll();
 
         $this->assertEquals(1, $identifiedLogErrors[0]->getCount());

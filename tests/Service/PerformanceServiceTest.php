@@ -1,19 +1,19 @@
 <?php
 
-namespace IpartnersBundle\Tests\Service;
+namespace AppBundle\Tests\Service;
 
-use IpartnersBundle\Service\PerformanceService;
-use IpartnersBundle\Service\SlackService;
-use IpartnersBundle\Tests\IpartnersBaseTest;
-use IpartnersBundle\Tests\MockObj;
-use IpartnersBundle\Tests\TestUtil;
+use AppBundle\Service\PerformanceService;
+use AppBundle\Service\SlackService;
+use AppBundle\Tests\AppBaseTest;
+use AppBundle\Tests\MockObj;
+use AppBundle\Tests\TestUtil;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Class PerformanceServiceTest
- * @package IpartnersBundle\Tests\Service
+ * @package AppBundle\Tests\Service
  */
-class PerformanceServiceTest extends IpartnersBaseTest
+class PerformanceServiceTest extends AppBaseTest
 {
 
     /**

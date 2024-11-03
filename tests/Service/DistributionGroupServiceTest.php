@@ -1,20 +1,20 @@
 <?php
 
-namespace IpartnersBundle\Tests\Service;
+namespace AppBundle\Tests\Service;
 
-use IpartnersBundle\Entity\Types\AsyncProcessType;
-use IpartnersBundle\Entity\Types\DistributionVisibility;
-use IpartnersBundle\Service\AsyncProcessService;
-use IpartnersBundle\Service\DistributionGroupService;
-use IpartnersBundle\Service\DistributionService;
-use IpartnersBundle\Tests\IpartnersBaseTest;
-use IpartnersBundle\Tests\TestDatasetUtil;
+use AppBundle\Entity\Types\AsyncProcessType;
+use AppBundle\Entity\Types\DistributionVisibility;
+use AppBundle\Service\AsyncProcessService;
+use AppBundle\Service\DistributionGroupService;
+use AppBundle\Service\DistributionService;
+use AppBundle\Tests\AppBaseTest;
+use AppBundle\Tests\TestDatasetUtil;
 
 /**
  * Class DistributionGroupServiceTest
- * @package IpartnersBundle\Tests\Service
+ * @package AppBundle\Tests\Service
  */
-class DistributionGroupServiceTest extends IpartnersBaseTest
+class DistributionGroupServiceTest extends AppBaseTest
 {
 
     /**
@@ -248,14 +248,14 @@ class DistributionGroupServiceTest extends IpartnersBaseTest
         $distributionGroups = $this->distributionGroupService->distributionGroupsByDeal($distribution->getDeal()->getId(), $paginatorData);
 
         $distributionDateGroups = $this->entityManager
-            ->getRepository('IpartnersBundle:DistributionDateGroup')
+            ->getRepository('AppBundle:DistributionDateGroup')
             ->findByDealId($distribution->getDeal()->getId());
         $this->assertEquals(4, count($distributionDateGroups));
 
         $this->distributionService->updateDistributionsByDistributionIdAndInvestmentEntity($distribution->getId());
 
         $distributionDateGroups = $this->entityManager
-            ->getRepository('IpartnersBundle:DistributionDateGroup')
+            ->getRepository('AppBundle:DistributionDateGroup')
             ->findByDealId($distribution->getDeal()->getId());
         $this->assertEquals(3, count($distributionDateGroups));
 
@@ -291,7 +291,7 @@ class DistributionGroupServiceTest extends IpartnersBaseTest
         $distributionGroups = $this->distributionGroupService->distributionGroupsByDeal($distribution->getDeal()->getId(), $paginatorData);
 
         $distributionDateGroups = $this->entityManager
-            ->getRepository('IpartnersBundle:DistributionDateGroup')
+            ->getRepository('AppBundle:DistributionDateGroup')
             ->findByDealId($distribution->getDeal()->getId());
         $this->assertEquals(4, count($distributionDateGroups));
 
@@ -299,7 +299,7 @@ class DistributionGroupServiceTest extends IpartnersBaseTest
             null, $distribution->getDeal()->getId(), $distribution->getDistributionDate(), array(DistributionVisibility::STAGING,DistributionVisibility::VISIBLE), null, DistributionVisibility::VISIBLE);
 
         $distributionDateGroups = $this->entityManager
-            ->getRepository('IpartnersBundle:DistributionDateGroup')
+            ->getRepository('AppBundle:DistributionDateGroup')
             ->findByDealId($distribution->getDeal()->getId());
         $this->assertEquals(3, count($distributionDateGroups));
 
@@ -321,14 +321,14 @@ class DistributionGroupServiceTest extends IpartnersBaseTest
         $distributionGroups = $this->distributionGroupService->distributionGroupsByDeal($distribution->getDeal()->getId(), $paginatorData);
 
         $distributionDateGroups = $this->entityManager
-            ->getRepository('IpartnersBundle:DistributionDateGroup')
+            ->getRepository('AppBundle:DistributionDateGroup')
             ->findByDealId($distribution->getDeal()->getId());
         $this->assertEquals(4, count($distributionDateGroups));
 
         $this->distributionService->deleteDistributions($distribution->getDeal(), $distribution->getDistributionDate());
 
         $distributionDateGroups = $this->entityManager
-            ->getRepository('IpartnersBundle:DistributionDateGroup')
+            ->getRepository('AppBundle:DistributionDateGroup')
             ->findByDealId($distribution->getDeal()->getId());
         $this->assertEquals(3, count($distributionDateGroups));
 

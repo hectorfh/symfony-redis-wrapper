@@ -1,17 +1,17 @@
 <?php
 
-namespace IpartnersBundle\Tests\Service;
+namespace AppBundle\Tests\Service;
 
-use IpartnersBundle\Constant\TaskStatus;
-use IpartnersBundle\Entity\TaskSemaphore;
-use IpartnersBundle\Service\TaskService;
-use IpartnersBundle\Tests\IpartnersBaseTest;
+use AppBundle\Constant\TaskStatus;
+use AppBundle\Entity\TaskSemaphore;
+use AppBundle\Service\TaskService;
+use AppBundle\Tests\AppBaseTest;
 
 /**
  * Class TaskServiceTest
- * @package IpartnersBundle\Tests\Service
+ * @package AppBundle\Tests\Service
  */
-class TaskServiceTest extends IpartnersBaseTest
+class TaskServiceTest extends AppBaseTest
 {
 
     /**

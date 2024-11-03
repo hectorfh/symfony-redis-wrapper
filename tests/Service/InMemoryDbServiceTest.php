@@ -1,24 +1,24 @@
 <?php
 
-namespace IpartnersBundle\Tests\Service;
+namespace AppBundle\Tests\Service;
 
-use IpartnersBundle\Entity\ModuleLog;
-use IpartnersBundle\Entity\Types\PlatformId;
-use IpartnersBundle\Handler\IplatformsCustomLogHandler;
-use IpartnersBundle\Filter\PlatformFilter;
-use IpartnersBundle\Service\InMemoryDbService;
-use IpartnersBundle\Service\PlatformConfigService;
-use IpartnersBundle\Service\SlackService;
-use IpartnersBundle\Tests\IpartnersBaseTest;
-use IpartnersBundle\Tests\TestUtil;
+use AppBundle\Entity\ModuleLog;
+use AppBundle\Entity\Types\PlatformId;
+use AppBundle\Handler\IplatformsCustomLogHandler;
+use AppBundle\Filter\PlatformFilter;
+use AppBundle\Service\InMemoryDbService;
+use AppBundle\Service\PlatformConfigService;
+use AppBundle\Service\SlackService;
+use AppBundle\Tests\AppBaseTest;
+use AppBundle\Tests\TestUtil;
 use Monolog\Logger;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Class InMemoryDbServiceTest
- * @package IpartnersBundle\Tests\Service
+ * @package AppBundle\Tests\Service
  */
-class InMemoryDbServiceTest extends IpartnersBaseTest
+class InMemoryDbServiceTest extends AppBaseTest
 {
 
     /**
